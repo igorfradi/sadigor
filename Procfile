@@ -1,0 +1,1 @@
+sadigor: python "bot.py"
