@@ -51,28 +51,9 @@ async def regras(ctx):
         embed.add_field(name="Não mencione atoa!", value="Não mencione ninguém sem motivo, principalmente cargos da Staff. As pessoas param o que estão fazendo para visualizar menções!")
         embed.add_field(name="Moderação Automática", value="Você será punido automaticamente ao enviar mensagens abusivas como: texto duplicado, CAPSLOCK EM EXCESSO, muitos emojis, menções demais, etc.")
 
-        await client.say(content="**Seja bem vindo ao discord do MaxPalaro!**\n\nO grupo possui diversas salas e funções, que **só serão desbloqueadas após ler as regras e concordar:**\n*Para concordar, é só reagir à esta mensagem!* ✅\n\n", embed=embed)
+        await client.say(content="**Seja bem vindo ao discord do MaxPalaro!**\n\n", embed=embed)
     else:
-        await client.say(content="BURRO BURRO BURRO")
-#
-
-# Cargos Selecionáveis
-@client.command(pass_context=True)
-async def cargos(ctx):
-    if ctx.message.author.server_permissions.manage_messages:
-        embed = discord.Embed(title="Cargos Selecionáveis", colour=discord.Colour(0xdd289b), description="Estes são os cargos que você pode selecionar, cada um tem uma função diferente. É só adicionar uma reação abaixo!\n\n\n")
-
-        embed.set_thumbnail(url="https://i.imgur.com/RVPBBFM.png")
-        embed.set_author(name="Max Palaro", url="https://www.youtube.com/MaxPalaro", icon_url="https://i.imgur.com/RVPBBFM.png")
-        embed.set_footer(text="SadIgor bot © IgorFradi - 2018", icon_url="https://i.imgur.com/cqLMPao.png")
-
-        embed.add_field(name=":one: Saguão", value="Te dá acesso aos canais de voz, música e jogos")
-        embed.add_field(name=":two: Anúncios", value="Te notifica quando houver vídeos e livestreams novas, eventos e novidades do servidor!")
-        embed.add_field(name=":three: Divulgação", value="Te dá acesso aos canais de divulgação. Onde você pode divulgar suas coisas e receber links da galera.")
-        
-        await client.say(embed=embed)
-    else:
-        await client.say(content="BURRO BURRO BURRO")
+        await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
 #
 
 # Max Responde
@@ -92,7 +73,7 @@ async def maxresponde(ctx):
 
         await client.say(content="Participe da série **Max Responde!**\n\nLembre-se de seguir as regras abaixo e boa sorte!\n**O desrespeito às regras é punido com mute, kick ou até mesmo banimento.**", embed=embed)
     else:
-        await client.say(content="BURRO BURRO BURRO")
+        await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
 #
 
 # Divulgação
@@ -112,27 +93,7 @@ async def divulgação(ctx):
 
         await client.say(content="**Bem vindo à sala de divulgação!**\nAqui você receberá notificações de vídeos e streams novas do MaxPalaro, além de poder também divulgar suas coisas.\n\n**Quebrar as regras acarretará em mutes longos (ou até mesmo kick e ban), leia com atenção:**", embed=embed)
     else:
-        await client.say(content="BURRO BURRO BURRO")
-#
-
-# Ajuda
-@client.command(pass_context=True)
-async def ajuda(ctx):
-    if ctx.message.author.server_permissions.manage_messages:
-        embed = discord.Embed(title="Central de Ajuda", colour=discord.Colour(0xdd289b), description="Essa é a sala de ajuda!\n\nQualquer dúvida é só chamar xD")
-
-        embed.set_thumbnail(url="https://i.imgur.com/RVPBBFM.png")
-        embed.set_author(name="Max Palaro", url="https://www.youtube.com/MaxPalaro", icon_url="https://i.imgur.com/RVPBBFM.png")
-        embed.set_footer(text="SadIgor bot © @IgorFradi - 2018", icon_url="https://i.imgur.com/cqLMPao.png")
-
-        embed.add_field(name="Como acessar o servidor", value="Você só poderá visualizar as salas após concordar com as regras! (basta clicar na reação verde)")
-        embed.add_field(name="Fui punido injustamente!", value="O servidor possui moderação automática (!automod) e qualquer punição injusta pode ser contestada aqui.")
-        embed.add_field(name="Quais são os comandos do server?", value="Basta perguntar neste chat qual bot você deseja utilizar e lhe informaremos os comandos ;)")
-        embed.add_field(name="Como denunciar alguém?", value="Denuncias podem ser feitas diretamente para o Admin Líder: @IgorFradi #1084")
-
-        await client.say(embed=embed)
-    else:
-        await client.say(content="BURRO BURRO BURRO")
+        await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
 #
 
 # Créditos
@@ -150,30 +111,6 @@ async def créditos(ctx):
     embed.add_field(name="Contato:", value="igorlourenzofrade@gmail.com", inline=True)
 
     await client.say(content="", embed=embed)
-#
-
-# Quando houver uma reação
-@client.event
-async def on_reaction_add(reaction, user):
-    msg = reaction.message 
-
-    # Reações do comando no Cargos
-    if reaction.emoji == "1⃣" and msg.id == 474803706437697548:
-        role = discord.utils.find(lambda r: r.name == "Saguão", msg.server.roles)
-        await client.add_roles(user, role)
-
-    if reaction.emoji == "2⃣" and msg.id == 474803706437697548:
-        role = discord.utils.find(lambda r: r.name == "Anúncios", msg.server.roles)
-        await client.add_roles(user, role)
-
-    if reaction.emoji == "3⃣" and msg.id == 474803706437697548:
-        role = discord.utils.find(lambda r: r.name == "Divulgação", msg.server.roles)
-        await client.add_roles(user, role)
-
-    # Reações do comando no Início
-    if reaction.emoji == "✅" and msg.id == 474792851918553117:
-        role = discord.utils.find(lambda r: r.name == "Inscrito", msg.server.roles)
-        await client.add_roles(user, role)
 #
 
 # Criado por: @IgorFradi - 2018
