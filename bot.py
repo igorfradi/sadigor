@@ -2,16 +2,15 @@
 # 03/08/2018
 # Importa livrarias e arquivos necessários
 print('Importando livrarias necessárias...')
-import discord
-import os
+import discord, asyncio, random, time
+import config
 from discord.ext import commands
-from keep_alive import keep_alive
 print('Pronto!')
 #
 
 # Configurações do Bot
 print('Carregando configurações...')
-token = os.environ.get("DISCORD_BOT_SECRET")      # Setando a TOKEN
+token = config.TOKEN                            # Setando a TOKEN
 client = commands.Bot(command_prefix = '>')     # Setando o PREFIX
 client.remove_command('help')                   # Removendo o HELP
 print('Pronto!')
@@ -30,8 +29,8 @@ async def on_ready():
     print('Nome: %s' % client.user.name)
     print('ID: %s' % client.user.id)
     print('O bot tá pronto pra ser escravizado!')
-    print('Invite Admin https://discordapp.com/oauth2/authorize?client_id=490881022037327878&scope=bot&permissions=8')
-    print('Invite Não-Admin https://discordapp.com/oauth2/authorize/?permissions=1341643969&scope=bot&client_id=490881022037327878')
+    print('Invite Admin https://discordapp.com/oauth2/authorize?client_id=463804761138004019&scope=bot&permissions=8')
+    print('Invite Não-Admin https://discordapp.com/oauth2/authorize/?permissions=1341643969&scope=bot&client_id=463804761138004019')
 #
 
 # Comandos #
@@ -53,25 +52,6 @@ async def regras(ctx):
         embed.add_field(name="Moderação Automática", value="Você será punido automaticamente ao enviar mensagens abusivas como: texto duplicado, CAPSLOCK EM EXCESSO, muitos emojis, menções demais, etc.")
 
         await client.say(content="**Seja bem vindo ao discord do MaxPalaro!**\n\n", embed=embed)
-    else:
-        await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
-#
-
-# Cargos Selecionáveis
-@client.command(pass_context=True)
-async def cargos(ctx):
-    if ctx.message.author.server_permissions.manage_messages:
-        embed = discord.Embed(title="Cargos Selecionáveis", colour=discord.Colour(0xdd289b), description="Estes são os cargos que você pode selecionar, cada um tem uma função diferente. É só adicionar uma reação abaixo!\n\n\n")
-
-        embed.set_thumbnail(url="https://i.imgur.com/RVPBBFM.png")
-        embed.set_author(name="Max Palaro", url="https://www.youtube.com/MaxPalaro", icon_url="https://i.imgur.com/RVPBBFM.png")
-        embed.set_footer(text="SadIgor bot © IgorFradi - 2018", icon_url="https://i.imgur.com/cqLMPao.png")
-
-        embed.add_field(name=":one: Saguão", value="Te dá acesso aos canais de voz, música e jogos")
-        embed.add_field(name=":two: Anúncios", value="Te notifica quando houver vídeos e livestreams novas, eventos e novidades do servidor!")
-        embed.add_field(name=":three: Divulgação", value="Te dá acesso aos canais de divulgação. Onde você pode divulgar suas coisas e receber links da galera.")
-        
-        await client.say(embed=embed)
     else:
         await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
 #
@@ -135,7 +115,5 @@ async def créditos(ctx):
 
 # Criado por: @IgorFradi - 2018
 #
-# Deixa o bot online no replit
-keep_alive()
 # Loga o bot usando token externo
 client.run(token)
