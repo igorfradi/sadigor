@@ -96,6 +96,26 @@ async def divulgação(ctx):
         await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
 #
 
+# Ajuda
+@client.command(pass_context=True)
+async def ajuda(ctx):
+    if ctx.message.author.server_permissions.manage_messages:
+        embed = discord.Embed(title="Central de Ajuda", colour=discord.Colour(0xdd289b), description="Essa é a sala de ajuda!\n\nQualquer dúvida é só chamar xD")
+
+        embed.set_thumbnail(url="https://i.imgur.com/RVPBBFM.png")
+        embed.set_author(name="Max Palaro", url="https://www.youtube.com/MaxPalaro", icon_url="https://i.imgur.com/RVPBBFM.png")
+        embed.set_footer(text="SadIgor bot © @IgorFradi - 2018", icon_url="https://i.imgur.com/cqLMPao.png")
+
+        embed.add_field(name="Como acessar o servidor", value="É só se registrar no servidor! Basta utilizar o comando /registrar")
+        embed.add_field(name="Fui punido injustamente!", value="O servidor possui moderação automática (!automod) e qualquer punição injusta pode ser contestada aqui.")
+        embed.add_field(name="Quais são os comandos do server?", value="Basta perguntar neste chat qual bot você deseja utilizar e lhe informaremos os comandos ;)")
+        embed.add_field(name="Como denunciar alguém?", value="Denuncias podem ser feitas diretamente para o Admin Líder: @IgorFradi#1084 (ID: 205817378808791041)")
+
+        await client.say(embed=embed)
+    else:
+        await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
+#
+
 # Créditos
 @client.command(pass_context=True)
 async def créditos(ctx):
