@@ -2,15 +2,16 @@
 # 03/08/2018
 # Importa livrarias e arquivos necessários
 print('Importando livrarias necessárias...')
-import discord, asyncio, random, time
-import config
+import discord
+import os
 from discord.ext import commands
+from keep_alive import keep_alive
 print('Pronto!')
 #
 
 # Configurações do Bot
 print('Carregando configurações...')
-token = config.TOKEN                            # Setando a TOKEN
+token = os.environ.get("DISCORD_BOT_SECRET")      # Setando a TOKEN
 client = commands.Bot(command_prefix = '>')     # Setando o PREFIX
 client.remove_command('help')                   # Removendo o HELP
 print('Pronto!')
@@ -29,8 +30,8 @@ async def on_ready():
     print('Nome: %s' % client.user.name)
     print('ID: %s' % client.user.id)
     print('O bot tá pronto pra ser escravizado!')
-    print('Invite Admin https://discordapp.com/oauth2/authorize?client_id=463804761138004019&scope=bot&permissions=8')
-    print('Invite Não-Admin https://discordapp.com/oauth2/authorize/?permissions=1341643969&scope=bot&client_id=463804761138004019')
+    print('Invite Admin https://discordapp.com/oauth2/authorize?client_id=490881022037327878&scope=bot&permissions=8')
+    print('Invite Não-Admin https://discordapp.com/oauth2/authorize/?permissions=1341643969&scope=bot&client_id=490881022037327878')
 #
 
 # Comandos #
@@ -51,9 +52,9 @@ async def regras(ctx):
         embed.add_field(name="Não mencione atoa!", value="Não mencione ninguém sem motivo, principalmente cargos da Staff. As pessoas param o que estão fazendo para visualizar menções!")
         embed.add_field(name="Moderação Automática", value="Você será punido automaticamente ao enviar mensagens abusivas como: texto duplicado, CAPSLOCK EM EXCESSO, muitos emojis, menções demais, etc.")
 
-        await client.say(content="**Seja bem vindo ao discord do MaxPalaro!**\n\nO grupo possui diversas salas e funções, que **só serão desbloqueadas após ler as regras e concordar:**\n*Para concordar, é só reagir à esta mensagem!* ✅\n\n", embed=embed)
+        await client.say(content="**Seja bem vindo ao discord do MaxPalaro!**\n\n", embed=embed)
     else:
-        await client.say(content="BURRO BURRO BURRO")
+        await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
 #
 
 # Cargos Selecionáveis
@@ -72,7 +73,7 @@ async def cargos(ctx):
         
         await client.say(embed=embed)
     else:
-        await client.say(content="BURRO BURRO BURRO")
+        await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
 #
 
 # Max Responde
@@ -92,7 +93,7 @@ async def maxresponde(ctx):
 
         await client.say(content="Participe da série **Max Responde!**\n\nLembre-se de seguir as regras abaixo e boa sorte!\n**O desrespeito às regras é punido com mute, kick ou até mesmo banimento.**", embed=embed)
     else:
-        await client.say(content="BURRO BURRO BURRO")
+        await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
 #
 
 # Divulgação
@@ -112,7 +113,7 @@ async def divulgação(ctx):
 
         await client.say(content="**Bem vindo à sala de divulgação!**\nAqui você receberá notificações de vídeos e streams novas do MaxPalaro, além de poder também divulgar suas coisas.\n\n**Quebrar as regras acarretará em mutes longos (ou até mesmo kick e ban), leia com atenção:**", embed=embed)
     else:
-        await client.say(content="BURRO BURRO BURRO")
+        await client.say(content="Ooops! Algo deu errado :s\nEntre em contato com um administrador! :D")
 #
 
 # Créditos
@@ -132,31 +133,9 @@ async def créditos(ctx):
     await client.say(content="", embed=embed)
 #
 
-# Quando houver uma reação
-@client.event
-async def on_reaction_add(reaction, user):
-    msg = reaction.message 
-
-    # Reações do comando no Cargos
-    if reaction.emoji == "1⃣" and msg.id == 474803706437697548:
-        role = discord.utils.find(lambda r: r.name == "Saguão", msg.server.roles)
-        await client.add_roles(user, role)
-
-    if reaction.emoji == "2⃣" and msg.id == 474803706437697548:
-        role = discord.utils.find(lambda r: r.name == "Anúncios", msg.server.roles)
-        await client.add_roles(user, role)
-
-    if reaction.emoji == "3⃣" and msg.id == 474803706437697548:
-        role = discord.utils.find(lambda r: r.name == "Divulgação", msg.server.roles)
-        await client.add_roles(user, role)
-
-    # Reações do comando no Início
-    if reaction.emoji == "✅" and msg.id == 474792851918553117:
-        role = discord.utils.find(lambda r: r.name == "Inscrito", msg.server.roles)
-        await client.add_roles(user, role)
-#
-
 # Criado por: @IgorFradi - 2018
 #
+# Deixa o bot online no replit
+keep_alive()
 # Loga o bot usando token externo
 client.run(token)
